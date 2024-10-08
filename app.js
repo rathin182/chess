@@ -14,7 +14,7 @@ const chess = new Chess();
 let players = {};
 let currentplayer = "w";
 
-app.set("view engine", "ejs");
+// app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", (req, res) => {
@@ -51,12 +51,10 @@ io.on("connection", (uniquesocket) => {
       if (result) {
         currentplayer = chess.turn();
         io.emit("move", move);
-        io.emit("boardState", chess.fen())
-      }
-      else {
-          console.log("Invalid move: ", move);
-          uniquesocket.emit("invalid Move", move);
-          
+        io.emit("boardState", chess.fen());
+      } else {
+        console.log("Invalid move: ", move);
+        uniquesocket.emit("invalid Move", move);
       }
     } catch (err) {
       console.log(err);
