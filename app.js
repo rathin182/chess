@@ -14,7 +14,7 @@ const chess = new Chess();
 let players = {};
 let currentplayer = "w";
 
-app.set("view engine", "ejs");
+// app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", (req, res) => {
