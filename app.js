@@ -18,7 +18,7 @@ app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", (req, res) => {
-  res.render("index", { title: "Chess Game" });
+  res.send("Welcome to the chess game!");
 });
 
 io.on("connection", (uniquesocket) => {
@@ -51,12 +51,10 @@ io.on("connection", (uniquesocket) => {
       if (result) {
         currentplayer = chess.turn();
         io.emit("move", move);
-        io.emit("boardState", chess.fen())
-      }
-      else {
-          console.log("Invalid move: ", move);
-          uniquesocket.emit("invalid Move", move);
-          
+        io.emit("boardState", chess.fen());
+      } else {
+        console.log("Invalid move: ", move);
+        uniquesocket.emit("invalid Move", move);
       }
     } catch (err) {
       console.log(err);
