@@ -14,11 +14,11 @@ const chess = new Chess();
 let players = {};
 let currentplayer = "w";
 
-// app.set("view engine", "ejs");
+app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", (req, res) => {
-  res.send("Welcome to the chess game!");
+  res.render("index");
 });
 
 io.on("connection", (uniquesocket) => {

@@ -1,4 +1,4 @@
-const socket = io("https://backend-puce-six.vercel.app/"); // Replace with your Vercel backend URL
+const socket = io(); // Replace with your Vercel backend URL
 
 const chess = new Chess();
 const boardElement = document.querySelector(".chessboard");
